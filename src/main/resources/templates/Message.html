@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="MainLayout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  type="text/css" th:href="@{'/css/bootstrap.min.css'}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<div layout:fragment="body">
+    <input type="hidden" id="userId" th:value="${#authentication.principal.getId()}">
+    <div class="container ms-4">
+        <p style="font-size: 18px;font-weight: bolder;color: #0a53be">Chats</p>
+    </div>
+    <div class="container target">
+
+    </div>
+    <script>
+        loadContent();
+        function loadContent(){
+            const request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (this.readyState === request.DONE && this.status == 200) {
+                    let friendIdList = JSON.parse(request.responseText);
+                    for(let key in friendIdList){
+                        let htmlCode = "";
+                        const target = document.querySelector('.target');
+                        htmlCode = htmlCode + "<div class='container border border-secondary border-1 rounded-2 m-2 p-2' style='display: flex'>";
+                        htmlCode = htmlCode + "<div class='col-9'><p style='font-size: 16px'>" + key + "</p></div>";
+                        htmlCode = htmlCode + `<div class="col-3 text-end"><a class="btn btn-success" href="/met/chat/${friendIdList[key]}">Go to chat</a></div>`;
+                        htmlCode = htmlCode + "</div>";
+                        let newDiv = document.createElement('div');
+                        newDiv.innerHTML = htmlCode;
+                        target.append(newDiv);
+                    }
+                }
+            };
+            request.open("GET", "/message/"+userId.value);
+            request.send();
+        }
+    </script>
+</div>
+</html>

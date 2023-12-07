@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="05_12_23_creat_init_users" author="Yeskebekov Mirat">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter=";"
+                 path="db.changelog/changes/05_12_23_creat_init_users.sql"
+                 relativeToChangelogFile="false"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet id="05_12_23_insert_into_permissions" author="Yeskebekov Mirat">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter=";"
+                 path="db.changelog/changes/05_12_23_insert_into_permissions.sql"
+                 relativeToChangelogFile="false"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet id="05_12_23_insert_into_users" author="Yeskebekov Mirat">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter=";"
+                 path="db.changelog/changes/05_12_23_insert_into_users.sql"
+                 relativeToChangelogFile="false"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+    <changeSet id="05_12_23_insert_into_users_permissions" author="Yeskebekov Mirat">
+        <sqlFile dbms="postgresql"
+                 encoding="utf8"
+                 endDelimiter=";"
+                 path="db.changelog/changes/05_12_23_insert_into_users_permissions.sql"
+                 relativeToChangelogFile="false"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+</databaseChangeLog>
